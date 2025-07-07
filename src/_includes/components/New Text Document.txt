@@ -1,0 +1,10 @@
+<div class="hero-slider">
+  <div class="slider-track">
+    <div class="slide">Empowering Ideas with Design.</div>
+    <div class="slide">Smart Solutions for Bold Brands.</div>
+    <div class="slide">Your Vision. Our Execution.</div>
+    <div class="slide">Build. Scale. Succeed.</div>
+    <div class="slide">Design that Drives Results.</div>
+    <div class="slide">From Concept to Launch, Seamlessly.</div>
+  </div>
+</div>

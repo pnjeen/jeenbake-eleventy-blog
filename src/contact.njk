@@ -1,0 +1,93 @@
+---
+layout: layout.njk
+title: Let’s Connect
+subtitle: Tell Us Your Vision — We’ll Help You Build It, Write It, and Launch It
+keywords:
+  - contact JeenBake
+  - web development services
+  - technical writing services
+  - content writing inquiry
+  - elearning solutions
+  - technical documentation support
+  - website redesign request
+  - contact for writing and training
+  - digital services inquiry
+
+jsonLdType: ContactPage
+jsonLdExtra:
+  contactPoint:
+    "@type": "ContactPoint"
+    contactType: "customer support"
+    email: "services@jeenbake.com"
+---
+
+{% include "components/page-title.njk" %}
+
+<!-- CONTACT FORM SECTION -->
+<section class="section contact-section content-container">
+  <div class="contact-layout">
+    <!-- Left Pane: Contact Form -->
+    <div class="contact-form">
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="company">Company Name</label>
+        <input type="text" id="company" name="company">
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="service">Select a Service</label>
+        <select id="service" name="service" required>
+          <option value="">-- Select a Service --</option>
+          <option value="Web Development">Web Development</option>
+          <option value="Writing & Learning Content">Writing & Learning Content</option>
+          <option value="Semi-Dynamic Website Development">Semi-Dynamic Website (Offer)</option>
+          <option value="Other Services">Other Services</option>
+        </select>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" class="button">Send Message</button>
+        <div class="form-message" id="formMessage" style="display: none;"></div>
+      </form>
+    </div>
+
+    <!-- Right Pane: Service Info -->
+    <div class="service-details">
+      <h3>Our Services</h3>
+
+      <div class="card">
+        <h4>Web Development</h4>
+        <ul>
+          <li>Website Design & Development</li>
+          <li>Redesign or Refresh</li>
+          <li>Ongoing Website Maintenance</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>Writing & Learning Content</h4>
+        <ul>
+          <li>Technical Writing (Policies, Processes, SOPs)</li>
+          <li>Training Materials (eLearning, Short Videos)</li>
+          <li>Content for Websites, Blogs, and More</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>Other Services</h4>
+        <ul>
+          <li>Social Media Content</li>
+          <li>General Inquiries</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form Script -->
+<script src="/assets/js/contact.js" defer></script>

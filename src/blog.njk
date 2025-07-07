@@ -1,0 +1,93 @@
+---
+layout: layout.njk
+title: JeenBake Blog
+subtitle: Curated insights on websites, content, and scalable learning.
+description: Insights, tips, and updates from JeenBake on websites, content, and scalable learning.
+pagination:
+  data: collections.blogPosts
+  size: 10
+  reverse: true
+---
+
+{% include "components/page-title.njk" %}
+
+<section class="section blog-layout">
+  <!-- Sidebar for Desktop -->
+  <aside class="blog-sidebar">
+    <h3>Categories</h3>
+    <div class="tags-list">
+      {% for category in collections.categoryList | sort %}
+        <a href="/categories/{{ category | slug }}/" class="tag-pill">{{ category }}</a>
+      {% endfor %}
+    </div>
+
+    <h3>Topics</h3>
+    <div class="tags-list">
+      {% for tag in collections.tagList | sort %}
+        <a href="/tags/{{ tag | slug }}/" class="tag-pill">{{ tag }}</a>
+      {% endfor %}
+    </div>
+  </aside>
+
+  <!-- Blog Posts Main Section -->
+  <div class="blog-main">
+    <ul class="blog-list">
+      {% for post in pagination.items %}
+        <li class="blog-card">
+          <h2 class="blog-title">
+            <a href="{{ post.url }}">{{ post.data.title }} <span class="arrow">→</span></a>
+          </h2>
+
+          <p class="blog-date">{{ post.date | readableDate }}</p>
+
+          {# Category & Tags Inline (below title) #}
+          <div class="meta-tags-inline">
+            {% if post.data.category %}
+              <div class="meta-tags-group">
+                <span class="meta-label">Category:</span>
+                <a href="/categories/{{ post.data.category | slug }}/" class="tag-pill">{{ post.data.category }}</a>
+              </div>
+            {% endif %}
+
+            {% if post.data.tags %}
+              <div class="meta-tags-group">
+                <span class="meta-label">Topics:</span>
+                <div class="tags-list-inline">
+                  {% for tag in post.data.tags | sort %}
+                    {% if tag !== "post" %}
+                      <a href="/tags/{{ tag | slug }}/" class="tag-pill">{{ tag }}</a>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+          <p class="blog-desc">
+            {{ post.data.description or post.templateContent | striptags | truncate(160, true) }}
+          </p>
+
+          <a href="{{ post.url }}" class="read-more-link" aria-label="Read more about {{ post.data.title }}">
+            <span class="read-more-text">Read more</span> →
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if pagination.pages.length > 1 %}
+      <nav class="pagination">
+        {% if pagination.href.previous %}
+          <a href="{{ pagination.href.previous }}" class="button">← Previous</a>
+        {% endif %}
+        {% if pagination.href.next %}
+          <a href="{{ pagination.href.next }}" class="button">Next →</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Mobile Floating Toggle Button -->
+<button class="filter-toggle-btn" onclick="document.body.classList.toggle('show-filters')">
+  ☰ Filters
+</button>

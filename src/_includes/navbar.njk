@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <!-- Logo -->
+    <div class="nav-logo"><a href="/">JeenBake</a></div>
+
+    <!-- Hamburger Toggle with Label -->
+    <button class="nav-toggle" id="menu-toggle" aria-label="Toggle navigation">
+      ☰ Menu
+    </button>
+
+    <!-- Menu Items -->
+    <ul class="nav-menu">
+      <li><a href="/" class="{% if page.url == '/' %}active{% endif %}">Home</a></li>
+      <li><a href="/services/" class="{% if page.url == '/services/' %}active{% endif %}">Services</a></li>
+      <li><a href="/portfolios/" class="{% if page.url == '/portfolios/' %}active{% endif %}">Portfolios</a></li>
+      <li><a href="/whitepaper/" class="{% if page.url == '/whitepaper/' %}active{% endif %}">Whitepaper</a></li>
+      <li><a href="/about/" class="{% if page.url == '/about/' %}active{% endif %}">About</a></li>
+      <li><a href="/contact/" class="{% if page.url == '/contact/' %}active{% endif %}">Contact</a></li>
+      <li><a href="/blog/" class="{% if page.url.startsWith('/blog/') %}active{% endif %}">{{ site.blogLabel }}</a></li>
+    </ul>
+  </div>
+</nav>

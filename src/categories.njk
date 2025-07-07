@@ -1,0 +1,52 @@
+---
+pagination:
+  data: collections.categoryList
+  size: 1
+  alias: category
+permalink: "categories/{{ category | slug }}/index.html"
+layout: layout.njk
+title: "{{ category }} Articles"
+---
+
+<h1 class="page-title">Posts in “{{ category }}”</h1>
+
+<ul class="blog-list">
+  {% set hasPosts = false %}
+  {% for post in collections.blogPosts %}
+    {% if post.data.category == category %}
+      {% set hasPosts = true %}
+      <li class="blog-card">
+        <h2 class="blog-title">
+          <a href="{{ post.url }}">{{ post.data.title }}</a>
+        </h2>
+
+        <p class="blog-date">{{ post.date | readableDate }}</p>
+
+        {% if post.data.tags %}
+          <div class="tags-container">
+            <span class="tags-label">Topics:</span>
+            <ul class="tags-list">
+              {% for tag in post.data.tags %}
+                {% if tag !== "post" %}
+                  <li>
+                    <a href="/tags/{{ tag | slug }}/" class="tag-pill">{{ tag }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        <p class="blog-desc">
+          {{ post.data.description or post.templateContent | striptags | truncate(160, true) }}
+        </p>
+
+        <a class="read-more-link" href="{{ post.url }}">Read More →</a>
+      </li>
+    {% endif %}
+  {% endfor %}
+
+  {% if not hasPosts %}
+    <li>No posts found in this category.</li>
+  {% endif %}
+</ul>

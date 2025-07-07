@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "meta.njk" %}
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
+
+    <title>{{ title or "JeenBake Blog" }}</title>
+    <meta name="description" content="{{ description or 'Latest insights from JeenBake on web design, SEO, content writing, and more.' }}">
+
+    {% if keywords %}
+      {% if keywords is iterable and not keywords is string %}
+        <meta name="keywords" content="{{ keywords | join(', ') }}">
+      {% else %}
+        <meta name="keywords" content="{{ keywords }}">
+      {% endif %}
+    {% endif %}
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+
+    {% if env == "staging" %}
+      <meta name="robots" content="noindex, nofollow">
+    {% endif %}
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ title or 'JeenBake Blog' }}">
+    <meta property="og:description" content="{{ description or 'Latest insights from JeenBake on web design, SEO, content writing, and more.' }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:image" content="{{ ogImage or site.url ~ '/assets/images/og-default.png' }}">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title or 'JeenBake Blog' }}">
+    <meta name="twitter:image" content="{{ ogImage or site.url ~ '/assets/images/blog/og-default.png' }}">
+
+    {% if robots %}
+      <meta name="robots" content="{{ robots }}">
+    {% endif %}
+
+    {% block headExtra %}
+      {% if layout == "blog-post.njk" %}
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": "{{ title | escape }}",
+          "description": "{{ description | escape }}",
+          "url": "{{ site.url }}{{ page.url }}",
+          "datePublished": "{{ date }}",
+          "author": {
+            "@type": "Person",
+            "name": "Jeen"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "JeenBake Creative Studio",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{{ site.url }}/assets/icons/favicon.png"
+            }
+          },
+          "image": "{{ ogImage or site.url ~ '/assets/images/og-default.png' }}"
+        }
+        </script>
+      {% endif %}
+    {% endblock %}
+  </head>
+
+  <body>
+    {% include "navbar.njk" %}
+
+    <main class="main-content">
+      <div class="content-container">
+        {% block content %}
+          {{ content | safe }}
+        {% endblock %}
+      </div>
+    </main>
+
+    {% include "footer.njk" %}
+
+    <!-- Global Scripts -->
+    <script src="/assets/js/menu-toggle.js" defer></script>
+
+    {% if page.url == '/contact/' or title == "Let’s Connect" %}
+      <script src="/assets/js/contact.js" defer></script>
+    {% endif %}
+  </body>
+</html>

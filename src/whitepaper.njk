@@ -1,0 +1,83 @@
+---
+layout: layout.njk
+title: Insights & Strategy
+subtitle: Deep Dives into How We Build Websites, Craft Content, and Design Learning Experiences
+keywords:
+  - website architecture
+  - technical writing
+  - technical authoring
+  - documentation
+  - content strategy
+  - scalable elearning
+  - SEO-first design
+jsonLdType: CollectionPage
+jsonLdExtra:
+  about: "Content Strategy, Web UX, Learning Design, Technical Writing, Content Writing"
+  hasPart: [
+    {
+      "@type": "Article",
+      "headline": "Smart Web Design",
+      "url": "https://jeenbake.com/whitepaper"
+    },
+    {
+      "@type": "Article",
+      "headline": "Scalable Learning Solutions",
+      "url": "https://jeenbake.com/whitepaper"
+    },
+    {
+      "@type": "Article",
+      "headline": "Technical Writing for Complex Processes",
+      "url": "https://jeenbake.com/whitepaper"
+    },
+    {
+      "@type": "Article",
+      "headline": "Content Strategy & Messaging Clarity",
+      "url": "https://jeenbake.com/whitepaper"
+    }
+  ]
+---
+
+
+{% include "components/page-title.njk" %}
+
+<section class="section">
+  <div class="tab-frame">
+    <div class="tab-layout">
+
+      <!-- Tab Buttons (Desktop) -->
+      <div class="tab-buttons">
+        <button class="tab-button active" data-tab="website">Website</button>
+        <button class="tab-button" data-tab="help">Documentation</button>
+        <button class="tab-button" data-tab="elearning">eLearning</button>
+      </div>
+
+      <!-- Floating Toggle (Mobile Only) -->
+      <button class="tab-float-toggle" onclick="document.body.classList.toggle('show-tab-panel')">
+        ☰ More Whitepapers
+      </button>
+
+      <!-- Floating Panel -->
+      <div class="tab-float-panel">
+        <button class="tab-button active" data-tab="website">Website</button>
+        <button class="tab-button" data-tab="help">Documentation</button>
+        <button class="tab-button" data-tab="elearning">eLearning</button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="tab-content">
+        <div id="tab-website" class="tab-pane active">
+          {% include "components/tab-content-website.njk" %}
+        </div>
+        <div id="tab-help" class="tab-pane">
+          {% include "components/tab-content-help.njk" %}
+        </div>
+        <div id="tab-elearning" class="tab-pane">
+          {% include "components/tab-content-elearning.njk" %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="/assets/js/tabs.js" defer></script>

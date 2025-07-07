@@ -1,0 +1,30 @@
+{
+  "name": "jeenbake-website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy",
+    "build:prod": "cross-env ELEVENTY_ENV=production npx @11ty/eleventy",
+    "build:stage": "cross-env ELEVENTY_ENV=staging npx @11ty/eleventy",
+    "api": "node src/api/send-email.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.1",
+    "cross-env": "^7.0.3"
+  },
+  "dependencies": {
+    "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "luxon": "^3.6.1",
+    "nodemailer": "^7.0.3",
+    "slugify": "^1.6.6"
+  }
+}

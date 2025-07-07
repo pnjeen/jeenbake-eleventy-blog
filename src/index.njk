@@ -1,0 +1,127 @@
+---
+layout: layout.njk
+title: JeenBake Creative Studio | Websites, Content & eLearning Solutions
+description: Smart Websites. Strategic Content. Scalable Learning.
+keywords:
+  - web design studio
+  - content strategy services
+  - elearning development
+  - website development company
+  - technical writing services
+  - UX-focused design
+  - scalable learning solutions
+  - creative digital agency
+
+ogImage: /assets/images/og-image.png
+url: https://jeenbake.com/
+jsonLdType: WebPage
+jsonLdExtra:
+  primaryImageOfPage: "https://jeenbake.com/assets/images/og-image.png"
+---
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+  <div class="hero-frame content-container">
+    <div class="hero-text">
+      <h1 class="hero-title">Welcome to JeenBake Creative Studio</h1>
+      <p class="hero-subtitle">Smart Websites. Strategic Content. Scalable Learning.</p>
+      <div class="hero-buttons">
+        <a href="/services" class="button">Our Services</a>
+        <a href="/portfolios" class="button">See Our Work</a>
+      </div>
+    </div>
+    <div class="hero-image-placeholder">
+      {% include "components/hero-texts.njk" %}
+      <noscript>Inspirational taglines about content, design, and learning</noscript>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section text-center">
+  <h2>What We Do</h2>
+  <div class="card-grid grid-5">
+    <a href="/whitepaper" class="card-link">
+      <div class="card">
+        <img src="/assets/icons/web.png" alt="Web Design Icon" class="icon-img" />
+        <h3>Website Design & Dev</h3>
+      </div>
+    </a>
+    <a href="/whitepaper" class="card-link">
+      <div class="card">
+        <img src="/assets/icons/content.png" alt="Content Writing Icon" class="icon-img" />
+        <h3>Content Writing</h3>
+      </div>
+    </a>
+    <a href="/whitepaper" class="card-link">
+      <div class="card">
+        <img src="/assets/icons/docs.png" alt="Technical Docs Icon" class="icon-img" />
+        <h3>Technical Writing</h3>
+      </div>
+    </a>
+    <a href="/whitepaper" class="card-link">
+      <div class="card">
+        <img src="/assets/icons/elearning.png" alt="eLearning Icon" class="icon-img" />
+        <h3>eLearning Design & Dev</h3>
+      </div>
+    </a>
+  </div>
+</section>
+
+
+<section class="section text-center good-fit">
+  <h2>We're a Good Fit If You...</h2>
+  <ul class="fit-list">
+    <li>✅ Launching a product or idea</li>
+    <li>✅ Need a clean, modern online presence</li>
+    <li>✅ Value clarity and purposeful design</li>
+    <li>✅ Have a story to tell or message to share</li>
+    <li>✅ Want reliable, collaborative creative support</li>
+  </ul>
+</section>
+
+
+<!-- Latest Blogs Section -->
+<section class="section text-center">
+  <h2>Latest from Our Blog</h2>
+  <div class="card-grid grid-3">
+    {% set recentPosts = collections.blogPosts.slice(0, 3) %}
+    {% for post in recentPosts %}
+      <a href="{{ post.url }}" class="card-link">
+        <div class="card">
+          {% if post.data.category %}
+            <span class="blog-category">{{ post.data.category }}</span>
+          {% endif %}
+          <h3>{{ post.data.title }}</h3>
+          <time class="blog-date" datetime="{{ post.date.toISOString() }}">
+            {{ post.date | readableDate }}
+          </time>
+          <p class="blog-excerpt">
+            {{ post.data.description or post.templateContent | striptags | truncate(120) }}
+          </p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+  <div style="margin-top: 2rem;">
+    <a href="/blog/" class="button">View All Blog Posts</a>
+  </div>
+</section>
+
+
+<section class="section home-cta text-center">
+  <h2>Let’s Build Something Purposeful</h2>
+  <p>If your message deserves better clarity, structure, and design—we’re ready when you are.</p>
+  <a href="/contact" class="button" role="button" aria-label="Contact JeenBake">Let’s Talk</a>
+
+</section>
+
+
+<section class="section testimonial-slider" hidden>
+  <div class="testimonial-slide">"JeenBake elevated our bakery’s brand."</div>
+  <div class="testimonial-slide">"Superb support and beautiful results."</div>
+  <div class="testimonial-slide">"They handled everything end-to-end."</div>
+  <div class="testimonial-slide">"Our traffic doubled in two months!"</div>
+  <div class="testimonial-slide">"Professional and pixel-perfect."</div>
+</section>

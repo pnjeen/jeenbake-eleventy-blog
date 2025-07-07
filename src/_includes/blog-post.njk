@@ -1,0 +1,53 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  {% include "components/page-title.njk" %}
+
+  <section class="section">
+    <div class="blog-post-container">
+
+      <time datetime="{{ date }}" class="blog-date">{{ date | readableDate }}</time>
+      <a href="/blog/" class="button back-to-blog" aria-label="Back to {{ site.blogLabel }} List">← {{ site.blogLabel }}</a>
+
+      {# ✅ Breadcrumb Navigation #}
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> › 
+        <a href="/blog/">Blog</a>
+        {% if category %}
+          › <a href="/categories/{{ category | slug }}/">{{ category }}</a>
+        {% endif %}
+        › <span aria-current="page">{{ title }}</span>
+      </nav>
+
+      <article class="blog-post">
+        {{ content | safe }}
+
+        {# ✅ Combined Category & Tags Layout (clean inline view) #}
+        {% if category or tags %}
+          <div class="meta-tags-inline">
+            {% if category %}
+              <div class="meta-tags-group">
+                <div class="meta-label">Category:</div>
+                <a href="/categories/{{ category | slug }}/" class="tag-pill">{{ category }}</a>
+              </div>
+            {% endif %}
+
+            {% if tags %}
+              <div class="meta-tags-group">
+                <div class="meta-label">Topics:</div>
+                <div class="tags-list-inline">
+                  {% for tag in tags %}
+                    {% if tag !== "post" %}
+                      <a href="/tags/{{ tag | slug }}/" class="tag-pill">{{ tag }}</a>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </article>
+
+    </div>
+  </section>
+{% endblock %}
