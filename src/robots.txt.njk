@@ -1,0 +1,19 @@
+---
+permalink: "/robots.txt"  # Always output to root
+eleventyExcludeFromSitemap: true
+---
+
+{# Environment-based rules #}
+{% if env == "staging" %}  # Use `env` instead of `site.baseUrl`
+User-agent: *
+Disallow: /
+
+# DO NOT INDEX - Test Environment
+{% else %}
+User-agent: *
+Allow: /
+
+Sitemap: https://jeenbake.com/sitemap.xml
+Disallow: /tags/
+Disallow: /drafts/
+{% endif %}

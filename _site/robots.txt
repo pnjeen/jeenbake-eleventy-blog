@@ -1,9 +1,9 @@
+
+
+
 User-agent: *
 Allow: /
 
 Sitemap: https://jeenbake.com/sitemap.xml
-Host: https://jeenbake.com
-
-# Block unwanted auto-generated pages (e.g. tags, drafts)
 Disallow: /tags/
 Disallow: /drafts/

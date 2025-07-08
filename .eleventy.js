@@ -6,6 +6,9 @@ const path = require("path");
 const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
 
 module.exports = function (eleventyConfig) {
+
+  // ✅ Allow Eleventy to recognize .txt files
+    eleventyConfig.addTemplateFormats("txt");
   // ------------------------------
   // 1. Shortcodes
   // ------------------------------
@@ -124,38 +127,18 @@ module.exports = function (eleventyConfig) {
   // ------------------------------
   eleventyConfig.addGlobalData("env", process.env.ELEVENTY_ENV || "development");
 
-  // ------------------------------
-  // 5. robots.txt handling
-  // ------------------------------
-  eleventyConfig.on('eleventy.before', () => {
-    const env = process.env.ELEVENTY_ENV;
-    const sourceFile =
-      env === "production"
-        ? "robots.production.txt"
-        : env === "staging"
-        ? "robots.staging.txt"
-        : null;
 
-    if (sourceFile) {
-      const source = path.join(__dirname, sourceFile);
-      const target = path.join(__dirname, "src", "robots.txt");
 
-      if (fs.existsSync(source)) {
-        fs.copyFileSync(source, target);
-        console.log(`✅ Copied ${sourceFile} → src/robots.txt`);
-      } else {
-        console.warn(`⚠️ ${sourceFile} not found — skipping copy.`);
-      }
-    }
-  });
+// ------------------------------
+// 6. Passthrough Copy
+// ------------------------------
+// ------------------------------
+// 6. Passthrough Copy
+// ------------------------------
+eleventyConfig.addPassthroughCopy("assets");
+eleventyConfig.addPassthroughCopy("src/admin");
+eleventyConfig.addPassthroughCopy({ "src/staging/robots.txt": "staging/robots.txt" });
 
-  // ------------------------------
-  // 6. Passthrough Copy
-  // ------------------------------
-  eleventyConfig.addPassthroughCopy("assets");
-  eleventyConfig.addPassthroughCopy("src/admin");
-
-  // ------------------------------
   // 7. Sitemap Plugin
   // ------------------------------
   eleventyConfig.addPlugin(pluginSitemap, {
@@ -169,14 +152,17 @@ module.exports = function (eleventyConfig) {
   // ------------------------------
   // 8. Return Configuration
   // ------------------------------
-  return {
+    return {
+    pathPrefix: "/",
+
     dir: {
       input: "src",
       includes: "_includes",
       output: "_site",
       data: "_data"
     },
-    templateFormats: ["njk", "md", "html"],
+    templateFormats: ["njk", "md", "html", "txt"],
+
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
     dataTemplateEngine: "njk",

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npx @11ty/eleventy --serve",
+    "start": "cross-env ELEVENTY_ENV=staging npx @11ty/eleventy --serve",
     "build": "npx @11ty/eleventy",
     "build:prod": "cross-env ELEVENTY_ENV=production npx @11ty/eleventy",
     "build:stage": "cross-env ELEVENTY_ENV=staging npx @11ty/eleventy",

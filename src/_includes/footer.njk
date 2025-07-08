@@ -4,9 +4,8 @@
       &copy; {% currentYear %} JeenBake
     </p>
     <p class="footer-links">
-      <a href="/privacy-policy/" class="{% if page.url == '/privacy-policy/' %}active{% endif %}">Privacy Policy</a> | 
-      <a href="/terms-of-services/" class="{% if page.url == '/terms-of-services/' %}active{% endif %}">Terms of Services</a>
+      <a href="{{ site.baseUrl }}/privacy-policy/" class="{% if page.url == '/privacy-policy/' %}active{% endif %}">Privacy Policy</a> | 
+      <a href="{{ site.baseUrl }}/terms-of-services/" class="{% if page.url == '/terms-of-services/' %}active{% endif %}">Terms of Services</a>
     </p>
   </div>
 </footer>
-
